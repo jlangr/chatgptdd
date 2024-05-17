@@ -34,7 +34,9 @@ app.get('/lastTransaction', (req, res) => {
 
 // Endpoint to get the total value of the portfolio
 app.get('/value', (req, res) => {
+  console.log('get; portfolio =', portfolio)
   const totalValue = value(portfolio);
+  console.log('value =', totalValue)
   res.status(200).send({ totalValue });
 });
 

@@ -28,11 +28,13 @@ describe('Smoke tests for portfolio server', () => {
   });
 
   test('GET /value should return the portfolio value', async () => {
+    await request(app).post('/purchase').send({ symbol: 'AAPL', quantity: 42 });
+
     const response = await request(app)
       .get('/value')
       .expect(200)
       .expect('Content-Type', /json/);
 
-    expect(response.body.totalValue).toBeDefined();
+    expect(response.body.totalValue).toBe(42);
   });
 });
